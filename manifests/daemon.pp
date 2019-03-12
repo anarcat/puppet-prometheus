@@ -86,7 +86,7 @@ define prometheus::daemon (
   Optional[String] $env_file_path      = $prometheus::env_file_path,
   Optional[String[1]] $extract_command = $prometheus::extract_command,
   Boolean $export_scrape_job           = false,
-  String $scrape_host                  = $::fqdn,
+  String $scrape_host             = $facts['fqdn'],
   Optional[Integer] $scrape_port       = undef,
 ) {
 
