@@ -112,6 +112,7 @@ class prometheus::node_exporter (
   Optional[Array[String]] $collectors = undef,
   Array[String] $collectors_enable    = [],
   Array[String] $collectors_disable   = [],
+  String $scrape_job_name             = 'node',
 ) inherits prometheus {
 
   # Prometheus added a 'v' on the realease name at 0.13.0
@@ -168,5 +169,6 @@ class prometheus::node_exporter (
     manage_service     => $manage_service,
     export_scrape_job  => true,
     scrape_port        => 9100,
+    scrape_job_name    => $scrape_job_name,
   }
 }
