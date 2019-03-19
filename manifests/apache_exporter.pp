@@ -100,6 +100,7 @@ class prometheus::apache_exporter (
   String[1] $config_mode                                             = $prometheus::config_mode,
   String[1] $arch                                                    = $prometheus::real_arch,
   Stdlib::Absolutepath $bin_dir                                      = $prometheus::bin_dir,
+  String[1] $scrape_job_name                                         = 'apache',
 ) inherits prometheus {
 
   #Please provide the download_url for versions < 0.9.0
@@ -133,5 +134,8 @@ class prometheus::apache_exporter (
     service_ensure     => $service_ensure,
     service_enable     => $service_enable,
     manage_service     => $manage_service,
+    export_scrape_job  => true,
+    scrape_port        => 9117,
+    scrape_job_name    => $scrape_job_name,
   }
 }
