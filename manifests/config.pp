@@ -143,7 +143,7 @@ class prometheus::config {
       notify      => Class['::prometheus::service_reload'],
     }
   }
-  # collect the scrape jobs in a single list that gets appended to
+  # assemble the scrape jobs in a single list that gets appended to
   # $scrape_configs in the template
   $collected_scrape_jobs = $prometheus::server::collect_scrape_jobs.map |$job_definition| {
     $job_name = $job_definition['job_name']
