@@ -88,6 +88,8 @@ class prometheus::graphite_exporter (
   Optional[String] $download_url = undef,
   String $arch                   = $prometheus::real_arch,
   String $bin_dir                = $prometheus::bin_dir,
+  Stdlib::Port $scrape_port      = 9108,
+  String[1] $scrape_job_name     = 'graphite',
 ) inherits prometheus {
 
   $real_download_url = pick($download_url,"${download_url_base}/download/v${version}/${package_name}-${version}.${os}-${arch}.${download_extension}")
@@ -118,5 +120,8 @@ class prometheus::graphite_exporter (
     service_ensure     => $service_ensure,
     service_enable     => $service_enable,
     manage_service     => $manage_service,
+    export_scrape_job  => false,
+    scrape_port        => $scrape_port,
+    scrape_job_name    => $scrape_job_name,
   }
 }

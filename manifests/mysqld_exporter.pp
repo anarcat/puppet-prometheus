@@ -120,6 +120,8 @@ class prometheus::mysqld_exporter (
   Optional[Stdlib::Absolutepath] $cnf_socket                         = undef,
   String $arch                                                       = $prometheus::real_arch,
   Stdlib::Absolutepath $bin_dir                                      = $prometheus::bin_dir,
+  Stdlib::Port $scrape_port                                          = 9104,
+  String[1] $scrape_job_name                                         = 'mysql',
 ) inherits prometheus {
 
   #Please provide the download_url for versions < 0.9.0
@@ -165,5 +167,8 @@ class prometheus::mysqld_exporter (
     service_ensure     => $service_ensure,
     service_enable     => $service_enable,
     manage_service     => $manage_service,
+    export_scrape_job  => false,
+    scrape_port        => $scrape_port,
+    scrape_job_name    => $scrape_job_name,
   }
 }
