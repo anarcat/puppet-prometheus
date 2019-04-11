@@ -268,6 +268,7 @@ define prometheus::daemon (
     @@prometheus::scrape_job { "${scrape_host}:${scrape_port}":
       job_name => $scrape_job_name,
       targets  => ["${scrape_host}:${scrape_port}"],
+      labels   => { 'alias' => $scrape_host },
     }
   }
 }
