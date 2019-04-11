@@ -123,6 +123,7 @@ class prometheus::postgres_exporter (
   Optional[String] $postgres_user               = undef,
   String[1] $arch                               = $prometheus::real_arch,
   String[1] $bin_dir                            = $prometheus::bin_dir,
+  String[1] $scrape_job_name                    = 'postgres',
 ) inherits prometheus {
 
   $release = "v${version}"
@@ -213,5 +214,8 @@ class prometheus::postgres_exporter (
     service_ensure     => $service_ensure,
     service_enable     => $service_enable,
     manage_service     => $manage_service,
+    export_scrape_job  => true,
+    scrape_port        => 9187,
+    scrape_job_name    => $scrape_job_name,
   }
 }
