@@ -27,7 +27,7 @@ describe 'prometheus::daemon' do
           install_method:    'url',
           export_scrape_job: true,
           scrape_host:       'localhost',
-          scrape_port:       1234,
+          scrape_port:       1234
         }
       ].each do |parameters|
         context "with parameters #{parameters}" do
@@ -234,6 +234,7 @@ describe 'prometheus::daemon' do
           }
           context 'exported resources' do
             subject { exported_resources }
+
             it {
               is_expected.to contain_prometheus__scrape_job('localhost:1234')
             }
