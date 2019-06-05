@@ -88,7 +88,7 @@ define prometheus::daemon (
   Boolean $export_scrape_job           = false,
   Stdlib::Fqdn $scrape_host            = $facts['fqdn'],
   Optional[Stdlib::Port] $scrape_port  = undef,
-  String $scrape_job_name              = $name,
+  String[1] $scrape_job_name           = $name,
 ) {
 
   case $install_method {

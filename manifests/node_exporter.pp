@@ -112,7 +112,7 @@ class prometheus::node_exporter (
   Optional[Array[String]] $collectors = undef,
   Array[String] $collectors_enable    = [],
   Array[String] $collectors_disable   = [],
-  String $scrape_job_name             = 'node',
+  String[1] $scrape_job_name          = 'node',
 ) inherits prometheus {
 
   # Prometheus added a 'v' on the realease name at 0.13.0
