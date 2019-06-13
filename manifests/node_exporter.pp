@@ -112,6 +112,7 @@ class prometheus::node_exporter (
   Optional[Array[String]] $collectors = undef,
   Array[String] $collectors_enable    = [],
   Array[String] $collectors_disable   = [],
+  Boolean $export_scrape_job          = false,
   Stdlib::Port $scrape_port           = 9100,
   String[1] $scrape_job_name          = 'node',
 ) inherits prometheus {
@@ -168,7 +169,7 @@ class prometheus::node_exporter (
     service_ensure     => $service_ensure,
     service_enable     => $service_enable,
     manage_service     => $manage_service,
-    export_scrape_job  => false,
+    export_scrape_job  => $export_scrape_job,
     scrape_port        => $scrape_port,
     scrape_job_name    => $scrape_job_name,
   }
